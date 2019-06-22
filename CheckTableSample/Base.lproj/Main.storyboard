@@ -19,16 +19,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AP9-Jo-QTW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="128" width="375" height="539"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZH-jw-qdo">
+                                <rect key="frame" x="0.0" y="64" width="375" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rB6-Jx-r6b">
+                                        <rect key="frame" x="16" y="16" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="1oE-Av-wmd"/>
+                                            <constraint firstAttribute="height" constant="32" id="GlB-ia-wcu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addList" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zqr-EH-gkN"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ここにもちものを記入" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0A6-RL-yKw">
+                                        <rect key="frame" x="64" y="17" width="295" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Gjp-dW-OD3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="rB6-Jx-r6b" firstAttribute="leading" secondItem="ZZH-jw-qdo" secondAttribute="leading" constant="16" id="7ro-Eq-52S"/>
+                                    <constraint firstItem="rB6-Jx-r6b" firstAttribute="centerY" secondItem="ZZH-jw-qdo" secondAttribute="centerY" id="WBC-OE-d8i"/>
+                                    <constraint firstItem="0A6-RL-yKw" firstAttribute="leading" secondItem="rB6-Jx-r6b" secondAttribute="trailing" constant="16" id="gR7-NR-FFc"/>
+                                    <constraint firstItem="0A6-RL-yKw" firstAttribute="centerY" secondItem="ZZH-jw-qdo" secondAttribute="centerY" id="lim-KZ-fAa"/>
+                                    <constraint firstAttribute="height" constant="64" id="tBD-Ru-6MS"/>
+                                    <constraint firstAttribute="trailing" secondItem="0A6-RL-yKw" secondAttribute="trailing" constant="16" id="uPs-pW-DVH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ZZH-jw-qdo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8lM-9x-mRh"/>
                             <constraint firstItem="AP9-Jo-QTW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Aft-Bk-NKC"/>
                             <constraint firstItem="AP9-Jo-QTW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Bth-VD-7Me"/>
+                            <constraint firstItem="ZZH-jw-qdo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TlJ-oJ-jN6"/>
                             <constraint firstItem="AP9-Jo-QTW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="UKC-eP-1s1"/>
-                            <constraint firstItem="AP9-Jo-QTW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="vCt-Zz-b4r"/>
+                            <constraint firstItem="ZZH-jw-qdo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YOj-eU-ade"/>
+                            <constraint firstItem="AP9-Jo-QTW" firstAttribute="top" secondItem="ZZH-jw-qdo" secondAttribute="bottom" id="fIY-IZ-For"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -41,6 +80,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="checkTableView" destination="AP9-Jo-QTW" id="14e-0I-5oP"/>
+                        <outlet property="listTextField" destination="0A6-RL-yKw" id="EpF-NT-mDh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

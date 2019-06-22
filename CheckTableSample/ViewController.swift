@@ -13,24 +13,14 @@ class ViewController: UIViewController {
     
     @IBOutlet var checkTableView: UITableView!
     
+    // リスト追加用のTextField
+    @IBOutlet var listTextField: UITextField!
+    
     var sampleData = [SampleData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setSampleData()
         configureTableView()
-    }
-    
-    func setSampleData() {
-        let data1 = SampleData(title: "朝寝坊しがちだ", selected: false)
-        let data2 = SampleData(title: "夢をよくみる", selected: false)
-        let data3 = SampleData(title: "腹痛になりがちだ", selected: false)
-        let data4 = SampleData(title: "スポーツは苦手だ", selected: false)
-        sampleData.append(data1)
-        sampleData.append(data2)
-        sampleData.append(data3)
-        sampleData.append(data4)
     }
     
     func configureTableView() {
@@ -45,9 +35,46 @@ class ViewController: UIViewController {
 
     @IBAction func finish() {
         // データがどうなったか表示してみる
+        var trueCount = 0
         for data in sampleData {
             print("==========")
             print(data.selected)
+            if data.selected == true {
+                trueCount = trueCount + 1
+            }
+        }
+        
+        
+        trueCount = trueCount * 25
+        
+        let alert = UIAlertController(title: "あなたの健康度", message: "あなたの健康危険度は\(trueCount)%です！", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // 追加用のメソッドを追加
+    @IBAction func addList() {
+        // 入力用のtextFieldの文字を取得
+        let inputText = listTextField.text
+        
+        // inputTextが空(なにも入力されていないときは追加できないので、if-let文で入力されているか判定
+        if let inputText = inputText {
+            //
+            if inputText.count > 0 {
+                let newData = SampleData(title: inputText, selected: false)
+                sampleData.append(newData)
+                checkTableView.reloadData()
+                
+                // 入力を削除
+                listTextField.text = ""
+            } else {
+                print("文字が入力されていません")
+            }
+        } else {
+            print("文字が入力されていません")
         }
     }
 
@@ -74,6 +101,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            sampleData.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+        }
     }
 }
 
